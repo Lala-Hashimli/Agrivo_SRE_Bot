@@ -191,6 +191,18 @@ async def menu_callback(update: Update, context: ContextTypes.DEFAULT_TYPE) -> N
         "status": status_command,
         "health": health_command,
         "doctor": doctor_command,
+        "metrics": metrics_command,
+        "chart": chart_command,
+        "alerts": alerts_command,
+        "pods": pods_command,
+        "deployments": deployments_command,
+        "hpa": hpa_command,
+        "grafana": grafana_command,
+        "argocd": argocd_command,
+        "workflows": workflows_command,
+        "images": images_command,
+        "incident": incident_command,
+        "daily_report": daily_report_command,
         "help": help_command,
     }
     handler = handlers.get(query.data or "")

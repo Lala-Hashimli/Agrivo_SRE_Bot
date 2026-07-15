@@ -3,19 +3,60 @@ from telegram import InlineKeyboardButton, InlineKeyboardMarkup
 
 def main_keyboard(language: str = "en") -> InlineKeyboardMarkup:
     labels = {
-        "en": ("System status", "Health check", "Cluster Doctor", "Help"),
-        "az": ("Sistem statusu", "Sağlamlıq yoxlaması", "Klaster Doktoru", "Kömək"),
+        "en": {
+            "status": "System status",
+            "health": "Health check",
+            "doctor": "Cluster Doctor",
+            "metrics": "Metrics",
+            "chart": "Chart",
+            "alerts": "Alerts",
+            "pods": "Pods",
+            "deployments": "Deployments",
+            "hpa": "Autoscaling",
+            "grafana": "Grafana",
+            "argocd": "Argo CD",
+            "workflows": "Workflows",
+            "last_deploy": "Last deployment",
+            "images": "Images",
+            "incident": "Incident analysis",
+            "daily_report": "Daily report",
+            "help": "All commands",
+        },
+        "az": {
+            "status": "Sistem statusu",
+            "health": "Sağlamlıq yoxlaması",
+            "doctor": "Klaster doktoru",
+            "metrics": "Metriklər",
+            "chart": "Qrafik",
+            "alerts": "Alertlər",
+            "pods": "Podlar",
+            "deployments": "Deploymentlər",
+            "hpa": "Avtomatik miqyaslama",
+            "grafana": "Grafana",
+            "argocd": "Argo CD",
+            "workflows": "Workflow-lar",
+            "last_deploy": "Son deployment",
+            "images": "Image-lər",
+            "incident": "İnsident analizi",
+            "daily_report": "Gündəlik hesabat",
+            "help": "Bütün əmrlər",
+        },
     }
-    status, health, doctor, help_text = labels.get(language, labels["en"])
+    selected = labels.get(language, labels["en"])
+    rows = (
+        ("status", "health"),
+        ("doctor", "metrics"),
+        ("chart", "alerts"),
+        ("pods", "deployments"),
+        ("hpa", "grafana"),
+        ("argocd", "workflows"),
+        ("last_deploy", "images"),
+        ("incident", "daily_report"),
+        ("help",),
+    )
     return InlineKeyboardMarkup(
         [
-            [
-                InlineKeyboardButton(status, callback_data="status"),
-                InlineKeyboardButton(health, callback_data="health"),
-            ],
-            [
-                InlineKeyboardButton(doctor, callback_data="doctor"),
-                InlineKeyboardButton(help_text, callback_data="help"),
-            ],
+            [InlineKeyboardButton(selected[key], callback_data=key) for key in row]
+            for row in rows
         ]
     )
