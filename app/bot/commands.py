@@ -240,7 +240,7 @@ async def _operation_reply(
     if not result.available:
         await _reply(
             update,
-            f"{title}\n\nÃƒÂ¢Ã…Â¡Ã‚Â ÃƒÂ¯Ã‚Â¸Ã‚Â {result.safe_error or 'Data source unavailable.'}",
+            f"{title}\n\nWARNING: {result.safe_error or 'Data source unavailable.'}",
         )
         return
     if not result.items:
@@ -260,7 +260,7 @@ async def metrics_command(update: Update, context: ContextTypes.DEFAULT_TYPE) ->
     if not metrics.available:
         await _reply(
             update,
-            f"ÃƒÂ°Ã…Â¸Ã¢â‚¬Å“Ã…Â  Agrivo Metrics\n\nÃƒÂ¢Ã…Â¡Ã‚Â ÃƒÂ¯Ã‚Â¸Ã‚Â {metrics.safe_error}",
+            f"Agrivo Metrics\n\nWARNING: {metrics.safe_error}",
         )
         return
 
@@ -268,7 +268,7 @@ async def metrics_command(update: Update, context: ContextTypes.DEFAULT_TYPE) ->
         return "No data" if number is None else f"{number:.2f}{unit}"
 
     lines = [
-        "ÃƒÂ°Ã…Â¸Ã¢â‚¬Å“Ã…Â  Agrivo Metrics (Prometheus)",
+        "Agrivo Metrics (Prometheus)",
         "",
         f"Request rate: {value(metrics.request_rate, '/s')}",
         f"5xx error rate: {value(metrics.error_rate_percent, '%')}",
@@ -295,14 +295,14 @@ async def chart_command(update: Update, context: ContextTypes.DEFAULT_TYPE) -> N
     if chart is None or not update.effective_message:
         await _reply(
             update,
-            "ÃƒÂ°Ã…Â¸Ã¢â‚¬Å“Ã‹â€  Chart unavailable: Prometheus has no matching samples or is unreachable.",
+            "Chart unavailable: Prometheus has no matching samples or is unreachable.",
         )
         return
     import io
 
     await update.effective_message.reply_photo(
         photo=io.BytesIO(chart),
-        caption=f"ÃƒÂ°Ã…Â¸Ã¢â‚¬Å“Ã‹â€  Agrivo metrics ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Å“ last {hours} hour(s), {runtime.settings.display_timezone}",
+        caption=f"Agrivo metrics - last {hours} hour(s), {runtime.settings.display_timezone}",
     )
 
 
@@ -313,8 +313,8 @@ async def alerts_command(update: Update, context: ContextTypes.DEFAULT_TYPE) -> 
     await _operation_reply(
         update,
         result,
-        "ÃƒÂ°Ã…Â¸Ã…Â¡Ã‚Â¨ Active Alerts",
-        lambda item: f"ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢ [{item.severity.upper()}] {item.name}\n  {item.description}",
+        "Active Alerts",
+        lambda item: f"- [{item.severity.upper()}] {item.name}\n  {item.description}",
     )
 
 
@@ -326,8 +326,8 @@ async def pods_command(update: Update, context: ContextTypes.DEFAULT_TYPE) -> No
     await _operation_reply(
         update,
         result,
-        f"ÃƒÂ¢Ã‹Å“Ã‚Â¸ÃƒÂ¯Ã‚Â¸Ã‚Â Pods Ãƒâ€šÃ‚Â· {runtime.settings.active_namespace}",
-        lambda item: f"ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢ {item.name}: {item.phase}, ready {item.ready}, restarts {item.restarts}",
+        f"Pods - {runtime.settings.active_namespace}",
+        lambda item: f"- {item.name}: {item.phase}, ready {item.ready}, restarts {item.restarts}",
     )
 
 
@@ -341,8 +341,8 @@ async def deployments_command(
     await _operation_reply(
         update,
         result,
-        f"ÃƒÂ°Ã…Â¸Ã…Â¡Ã¢â€šÂ¬ Deployments Ãƒâ€šÃ‚Â· {runtime.settings.active_namespace}",
-        lambda item: f"ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢ {item.name}: ready {item.ready}, available {item.available}/{item.desired}\n  image: {item.image or 'unknown'}",
+        f"Deployments - {runtime.settings.active_namespace}",
+        lambda item: f"- {item.name}: ready {item.ready}, available {item.available}/{item.desired}\n  image: {item.image or 'unknown'}",
     )
 
 
@@ -354,8 +354,8 @@ async def hpa_command(update: Update, context: ContextTypes.DEFAULT_TYPE) -> Non
     await _operation_reply(
         update,
         result,
-        f"ÃƒÂ°Ã…Â¸Ã¢â‚¬Å“Ã‚Â Autoscaling Ãƒâ€šÃ‚Â· {runtime.settings.active_namespace}",
-        lambda item: f"ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢ {item.name} ÃƒÂ¢Ã¢â‚¬Â Ã¢â‚¬â„¢ {item.reference}: {item.current_replicas} replicas ({item.min_replicas}ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Å“{item.max_replicas})\n  {item.metrics}",
+        f"Autoscaling - {runtime.settings.active_namespace}",
+        lambda item: f"- {item.name} -> {item.reference}: {item.current_replicas} replicas ({item.min_replicas}-{item.max_replicas})\n  {item.metrics}",
     )
 
 
@@ -365,14 +365,12 @@ async def grafana_command(update: Update, context: ContextTypes.DEFAULT_TYPE) ->
     runtime = _runtime(context)
     links = runtime.operations_service.grafana_links()
     if not links:
-        await _reply(
-            update, "ÃƒÂ°Ã…Â¸Ã¢â‚¬Å“Ã…Â  Grafana\n\nNo dashboard URLs are configured."
-        )
+        await _reply(update, "Grafana\n\nNo dashboard URLs are configured.")
         return
     lines = [
-        "ÃƒÂ°Ã…Â¸Ã¢â‚¬Å“Ã…Â  Grafana Dashboards",
+        "Grafana Dashboards",
         "",
-        *(f"ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢ {name}: {url}" for name, url in links),
+        *(f"- {name}: {url}" for name, url in links),
     ]
     if not runtime.settings.grafana_render_enabled:
         lines.extend(
@@ -391,8 +389,8 @@ async def workflows_command(update: Update, context: ContextTypes.DEFAULT_TYPE) 
     await _operation_reply(
         update,
         result,
-        "ÃƒÂ¢Ã…Â¡Ã¢â€žÂ¢ÃƒÂ¯Ã‚Â¸Ã‚Â GitHub Actions Ãƒâ€šÃ‚Â· latest runs",
-        lambda item: f"ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢ {item.name}: {item.conclusion or item.status} Ãƒâ€šÃ‚Â· {item.branch or '?'} Ãƒâ€šÃ‚Â· {item.sha or '?'}\n  {item.url or ''}",
+        "GitHub Actions - latest runs",
+        lambda item: f"- {item.name}: {item.conclusion or item.status} | {item.branch or '?'} | {item.sha or '?'}\n  {item.url or ''}",
     )
 
 
@@ -403,8 +401,8 @@ async def argocd_command(update: Update, context: ContextTypes.DEFAULT_TYPE) -> 
     await _operation_reply(
         update,
         result,
-        "ÃƒÂ°Ã…Â¸Ã¢â‚¬ÂÃ¢â‚¬Å¾ Argo CD Applications",
-        lambda item: f"ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢ {item.name}: sync {item.sync}, health {item.health}, revision {item.revision or '?'}",
+        "Argo CD Applications",
+        lambda item: f"- {item.name}: sync {item.sync}, health {item.health}, revision {item.revision or '?'}",
     )
 
 
@@ -417,7 +415,7 @@ async def last_deploy_command(
     if not result.available or not result.items:
         await _reply(
             update,
-            f"ÃƒÂ°Ã…Â¸Ã…Â¡Ã¢â€šÂ¬ Last deployment\n\nÃƒÂ¢Ã…Â¡Ã‚Â ÃƒÂ¯Ã‚Â¸Ã‚Â {result.safe_error or 'No workflow runs found.'}",
+            f"Last deployment\n\nWARNING: {result.safe_error or 'No workflow runs found.'}",
         )
         return
     successful = next(
@@ -425,7 +423,7 @@ async def last_deploy_command(
     )
     await _reply(
         update,
-        f"ÃƒÂ°Ã…Â¸Ã…Â¡Ã¢â€šÂ¬ Last deployment\n\nWorkflow: {successful.name}\nResult: {successful.conclusion or successful.status}\nBranch: {successful.branch or '?'}\nCommit: {successful.sha or '?'}\n{successful.url or ''}",
+        f"Last deployment\n\nWorkflow: {successful.name}\nResult: {successful.conclusion or successful.status}\nBranch: {successful.branch or '?'}\nCommit: {successful.sha or '?'}\n{successful.url or ''}",
         disable_web_page_preview=True,
     )
 
@@ -437,8 +435,8 @@ async def images_command(update: Update, context: ContextTypes.DEFAULT_TYPE) -> 
     await _operation_reply(
         update,
         result,
-        "ÃƒÂ°Ã…Â¸Ã¢â‚¬Å“Ã‚Â¦ Running container images",
-        lambda item: f"ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢ {item.name}\n  {item.image or 'Image unavailable'}",
+        "Running container images",
+        lambda item: f"- {item.name}\n  {item.image or 'Image unavailable'}",
     )
 
 
@@ -479,7 +477,7 @@ async def _incident_text(runtime: RuntimeDependencies) -> str:
     )
     return "\n".join(
         [
-            "ÃƒÂ°Ã…Â¸Ã‚Â§Ã‚Â­ Agrivo Incident Analysis",
+            "Agrivo Incident Analysis",
             "",
             f"Overall: {overall.value.title()}",
             f"Unhealthy/unavailable components: {', '.join(unhealthy) or 'none'}",
@@ -508,10 +506,10 @@ async def incident_command(update: Update, context: ContextTypes.DEFAULT_TYPE) -
         )
         answer = await runtime.ai_service.ask(prompt)
         if answer.available and answer.text:
-            deterministic += "\n\n🤖 Gemini analysis\n\n" + answer.text
+            deterministic += "\n\nGemini analysis\n\n" + answer.text
         else:
             deterministic += (
-                "\n\n🤖 Gemini analysis unavailable; deterministic report shown."
+                "\n\nGemini analysis unavailable; deterministic report shown."
             )
     await _reply(update, deterministic)
 
@@ -532,7 +530,7 @@ async def daily_report_command(
         update,
         "\n".join(
             [
-                "ÃƒÂ°Ã…Â¸Ã¢â‚¬â€Ã¢â‚¬Å“ Agrivo Daily SRE Report",
+                "Agrivo Daily SRE Report",
                 "",
                 f"Environment: {runtime.settings.app_env.title()}",
                 f"Overall: {overall.value.title()}",
@@ -540,7 +538,7 @@ async def daily_report_command(
                 f"Data coverage: {score.coverage_percent}%",
                 f"Active alerts: {len(snapshot.active_alerts)}",
                 f"Backend p95: {'No data' if metrics.p95_latency_ms is None else f'{metrics.p95_latency_ms:.1f} ms'}",
-                f"Latest workflow: {'Unavailable' if latest is None else f'{latest.name} Ãƒâ€šÃ‚Â· {latest.conclusion or latest.status} Ãƒâ€šÃ‚Â· {latest.sha or "?"}'}",
+                f"Latest workflow: {'Unavailable' if latest is None else f'{latest.name} | {latest.conclusion or latest.status} | {latest.sha or "?"}'}",
                 "",
                 f"Timezone: {runtime.settings.display_timezone}",
             ]
