@@ -1,0 +1,17 @@
+{
+  "scenario": "resolved-incident", "source": "mock", "available": true, "status": "available", "safe_error": null,
+  "observed_at": "2026-07-14T12:40:00Z", "environment": "development",
+  "components": {
+    "frontend": {"source": "mock", "available": true, "observed_at": "2026-07-14T12:40:00Z", "status": "healthy", "safe_error": null, "latency_ms": 40},
+    "backend": {"source": "mock", "available": true, "observed_at": "2026-07-14T12:40:00Z", "status": "healthy", "safe_error": null, "latency_ms": 82},
+    "database": {"source": "mock", "available": true, "observed_at": "2026-07-14T12:40:00Z", "status": "healthy", "safe_error": null, "latency_ms": 17},
+    "prometheus": {"source": "mock", "available": true, "observed_at": "2026-07-14T12:40:00Z", "status": "healthy", "safe_error": null},
+    "grafana": {"source": "mock", "available": true, "observed_at": "2026-07-14T12:40:00Z", "status": "healthy", "safe_error": null},
+    "alertmanager": {"source": "mock", "available": true, "observed_at": "2026-07-14T12:40:00Z", "status": "healthy", "safe_error": null},
+    "argocd": {"source": "mock", "available": true, "observed_at": "2026-07-14T12:40:00Z", "status": "healthy", "safe_error": null, "sync_status": "Synced"},
+    "kubernetes": {"source": "mock", "available": true, "observed_at": "2026-07-14T12:40:00Z", "status": "healthy", "safe_error": null, "running_pods": 7, "pending_pods": 0, "failed_pods": 0, "restarts_last_hour": 1}
+  },
+  "active_alerts": [{"name": "AgrivoBackendHighLatency", "severity": "warning", "status": "resolved", "service": "backend", "description": "Backend latency returned to its normal range.", "started_at": "2026-07-14T12:05:00Z"}],
+  "metrics": {"backend_p95_latency_ms": 118, "backend_error_rate_percent": 0.1, "backend_cpu_percent": 29, "backend_memory_percent": 45},
+  "deployment": {"available": true, "status": "success", "component": "backend", "commit_sha": "f1xed0012345", "image_tag": "f1xed0012345", "argocd_sync_status": "Synced", "observed_at": "2026-07-14T12:32:00Z", "safe_error": null}
+}

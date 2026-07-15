@@ -1,0 +1,17 @@
+{
+  "scenario": "crash-loop-backoff", "source": "mock", "available": true, "status": "available", "safe_error": null,
+  "observed_at": "2026-07-14T12:15:00Z", "environment": "development",
+  "components": {
+    "frontend": {"source": "mock", "available": true, "observed_at": "2026-07-14T12:15:00Z", "status": "healthy", "safe_error": null, "latency_ms": 48},
+    "backend": {"source": "mock", "available": true, "observed_at": "2026-07-14T12:15:00Z", "status": "unhealthy", "safe_error": null},
+    "database": {"source": "mock", "available": true, "observed_at": "2026-07-14T12:15:00Z", "status": "healthy", "safe_error": null, "latency_ms": 20},
+    "prometheus": {"source": "mock", "available": true, "observed_at": "2026-07-14T12:15:00Z", "status": "healthy", "safe_error": null},
+    "grafana": {"source": "mock", "available": true, "observed_at": "2026-07-14T12:15:00Z", "status": "healthy", "safe_error": null},
+    "alertmanager": {"source": "mock", "available": true, "observed_at": "2026-07-14T12:15:00Z", "status": "healthy", "safe_error": null},
+    "argocd": {"source": "mock", "available": true, "observed_at": "2026-07-14T12:15:00Z", "status": "degraded", "safe_error": null, "sync_status": "Synced"},
+    "kubernetes": {"source": "mock", "available": true, "observed_at": "2026-07-14T12:15:00Z", "status": "unhealthy", "safe_error": null, "running_pods": 5, "pending_pods": 0, "failed_pods": 1, "restarts_last_hour": 12}
+  },
+  "active_alerts": [{"name": "AgrivoBackendCrashLoopBackOff", "severity": "critical", "status": "firing", "service": "backend", "description": "A backend pod is repeatedly crashing.", "started_at": "2026-07-14T12:08:00Z"}],
+  "metrics": {"backend_p95_latency_ms": null, "backend_error_rate_percent": null, "backend_cpu_percent": null, "backend_memory_percent": null},
+  "deployment": {"available": true, "status": "failed", "component": "backend", "commit_sha": "badc0de01234", "image_tag": "badc0de01234", "argocd_sync_status": "Synced", "observed_at": "2026-07-14T12:02:00Z", "safe_error": null}
+}

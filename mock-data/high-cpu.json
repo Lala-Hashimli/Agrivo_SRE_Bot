@@ -1,0 +1,17 @@
+{
+  "scenario": "high-cpu", "source": "mock", "available": true, "status": "available", "safe_error": null,
+  "observed_at": "2026-07-14T12:05:00Z", "environment": "development",
+  "components": {
+    "frontend": {"source": "mock", "available": true, "observed_at": "2026-07-14T12:05:00Z", "status": "healthy", "safe_error": null, "latency_ms": 44},
+    "backend": {"source": "mock", "available": true, "observed_at": "2026-07-14T12:05:00Z", "status": "degraded", "safe_error": null, "latency_ms": 240},
+    "database": {"source": "mock", "available": true, "observed_at": "2026-07-14T12:05:00Z", "status": "healthy", "safe_error": null, "latency_ms": 22},
+    "prometheus": {"source": "mock", "available": true, "observed_at": "2026-07-14T12:05:00Z", "status": "healthy", "safe_error": null},
+    "grafana": {"source": "mock", "available": true, "observed_at": "2026-07-14T12:05:00Z", "status": "healthy", "safe_error": null},
+    "alertmanager": {"source": "mock", "available": true, "observed_at": "2026-07-14T12:05:00Z", "status": "healthy", "safe_error": null},
+    "argocd": {"source": "mock", "available": true, "observed_at": "2026-07-14T12:05:00Z", "status": "healthy", "safe_error": null, "sync_status": "Synced"},
+    "kubernetes": {"source": "mock", "available": true, "observed_at": "2026-07-14T12:05:00Z", "status": "degraded", "safe_error": null, "running_pods": 8, "pending_pods": 0, "failed_pods": 0, "restarts_last_hour": 0}
+  },
+  "active_alerts": [{"name": "AgrivoBackendHighCPU", "severity": "warning", "status": "firing", "service": "backend", "description": "Backend CPU exceeded 85% for five minutes.", "started_at": "2026-07-14T12:00:00Z"}],
+  "metrics": {"backend_p95_latency_ms": 290, "backend_error_rate_percent": 1.2, "backend_cpu_percent": 91, "backend_memory_percent": 58},
+  "deployment": {"available": true, "status": "success", "component": "backend", "commit_sha": "c001cafe1234", "image_tag": "c001cafe1234", "argocd_sync_status": "Synced", "observed_at": "2026-07-14T10:00:00Z", "safe_error": null}
+}

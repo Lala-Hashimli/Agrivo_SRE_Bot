@@ -1,0 +1,34 @@
+services:
+  sre-bot:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: agrivo-sre-bot:local
+    container_name: agrivo-sre-bot
+    env_file:
+      - .env
+    environment:
+      BOT_DATA_MODE: ${BOT_DATA_MODE:-mock}
+      MOCK_SCENARIO: ${MOCK_SCENARIO:-healthy-system}
+      DATABASE_PATH: /data/agrivo-sre-bot.db
+    ports:
+      - "8085:8085"
+    volumes:
+      - agrivo_sre_bot_data:/data
+    restart: unless-stopped
+    read_only: true
+    tmpfs:
+      - /tmp:size=32m,mode=1777
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8085/health/ready', timeout=3)"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+
+volumes:
+  agrivo_sre_bot_data:

@@ -1,0 +1,58 @@
+{
+    "start":  "🌿 Agrivo SRE Assistant\n\nOperational monitoring and DevOps guidance for the Agrivo agricultural marketplace.\n\nEnvironment: {environment}\nLanguage: English\nData mode: {data_mode}\n\nHealth: /status, /health, /doctor\nAI assistance: /ask \u003cquestion\u003e\nPreferences: /language en or /language az\nHelp: /help",
+    "help":  "Agrivo SRE Assistant Commands\n\nHealth\n/start - Open main menu\n/status - Live platform overview\n/health - Detailed component health\n/doctor - Deterministic health score\n/metrics - Prometheus metric summary\n/chart [hours] - PNG metric chart (1-24 hours)\n/alerts - Active Alertmanager alerts\n\nPlatform\n/pods - Kubernetes pods\n/deployments - Kubernetes deployments and images\n/hpa - Autoscaling status\n/grafana - Dashboard links\n/argocd - Application sync and health\n/images - Running container images\n\nDelivery and analysis\n/workflows - Latest GitHub Actions runs\n/last_deploy - Latest successful workflow\n/incident - Correlated read-only incident analysis\n/daily_report - Daily platform report\n\nAI and preferences\n/ask \u003cquestion\u003e - Ask a DevOps question\n/language az or /language en - Change language",
+    "access_denied":  "Access denied.",
+    "data_unavailable":  "Data source unavailable.",
+    "mock_warning":  "⚠️ Mock data: no live Agrivo, Prometheus, Grafana, Kubernetes, or Argo CD source was queried.",
+    "ai_unavailable":  "AI assistant is currently unavailable because Gemini API is not configured.\nYou can still use /status, /health, /doctor and /help.",
+    "ai_temporary_failure":  "AI assistant is temporarily unavailable. Please use /status, /health, /doctor or try again later.",
+    "ask_usage":  "Usage: /ask \u003cDevOps question\u003e",
+    "ask_too_long":  "The question is too long. Maximum length is {maximum} characters.",
+    "generic_error":  "The request could not be completed safely. Please try again.",
+    "language_usage":  "Usage: /language az or /language en",
+    "language_changed":  "Language changed to English.",
+    "status":  {
+                   "title":  "🌿 Agrivo Platform Status",
+                   "environment":  "Environment: {value}",
+                   "data_mode":  "Data mode: {value}",
+                   "active_alerts":  "Active alerts: {count}",
+                   "last_deployment":  "Last deployment: {value}",
+                   "overall":  "Overall status: {value}",
+                   "observed":  "Observed: {value}"
+               },
+    "health":  {
+                   "title":  "🩺 Agrivo Component Health",
+                   "status":  "Status",
+                   "latency":  "Latency",
+                   "observed":  "Observed"
+               },
+    "doctor":  {
+                   "title":  "🩺 Agrivo Cluster Doctor",
+                   "score":  "Health score: {score}/100",
+                   "coverage":  "Data coverage: {coverage}%",
+                   "deductions":  "Deductions:",
+                   "recommendation":  "Recommendation:"
+               },
+    "components":  {
+                       "frontend":  "Frontend",
+                       "backend":  "Backend",
+                       "database":  "Database",
+                       "kubernetes":  "Kubernetes",
+                       "prometheus":  "Prometheus",
+                       "grafana":  "Grafana",
+                       "alertmanager":  "Alertmanager",
+                       "argocd":  "Argo CD"
+                   },
+    "statuses":  {
+                     "healthy":  "Healthy",
+                     "degraded":  "Degraded",
+                     "unhealthy":  "Unhealthy",
+                     "unknown":  "Unknown",
+                     "operational":  "Operational",
+                     "critical":  "Critical",
+                     "success":  "Successful",
+                     "successful":  "Successful",
+                     "failed":  "Failed",
+                     "failure":  "Failed"
+                 }
+}

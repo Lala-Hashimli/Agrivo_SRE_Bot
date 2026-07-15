@@ -1,0 +1,58 @@
+{
+    "start":  "🌿 Agrivo SRE Assistant\n\nAgrivo kənd təsərrüfatı bazarı üçün əməliyyat monitorinqi və DevOps dəstəyi.\n\nMühit: {environment}\nDil: Azərbaycan dili\nMəlumat rejimi: {data_mode}\n\nSağlamlıq: /status, /health, /doctor\nAI dəstəyi: /ask \u003csual\u003e\nTənzimləmələr: /language en və ya /language az\nKömək: /help",
+    "help":  "Agrivo SRE Assistant əmrləri\n\nSağlamlıq\n/start - Əsas menyu\n/status - Canlı platforma icmalı\n/health - Ətraflı komponent statusu\n/doctor - Deterministik sağlamlıq balı\n/metrics - Prometheus metrik xülasəsi\n/chart [saat] - PNG metrik qrafiki (1-24 saat)\n/alerts - Aktiv Alertmanager alertləri\n\nPlatforma\n/pods - Kubernetes podları\n/deployments - Deploymentlər və image-lər\n/hpa - Autoscaling statusu\n/grafana - Dashboard linkləri\n/argocd - Tətbiqlərin sync və health statusu\n/images - İşləyən container image-ləri\n\nÇatdırılma və analiz\n/workflows - Son GitHub Actions nəticələri\n/last_deploy - Son uğurlu workflow\n/incident - Əlaqələndirilmiş, yalnız-oxu incident analizi\n/daily_report - Gündəlik platforma hesabatı\n\nAI və seçimlər\n/ask \u003csual\u003e - DevOps sualı ver\n/language az və ya /language en - Dili dəyiş",
+    "access_denied":  "Giriş qadağandır.",
+    "data_unavailable":  "Məlumat mənbəyi əlçatan deyil.",
+    "mock_warning":  "⚠️ Mock məlumat: canlı Agrivo, Prometheus, Grafana, Kubernetes və ya Argo CD mənbəsinə sorğu göndərilməyib.",
+    "ai_unavailable":  "Gemini API sazlanmadığı üçün AI köməkçisi hazırda əlçatan deyil.\n/status, /health, /doctor və /help əmrlərindən istifadə edə bilərsiniz.",
+    "ai_temporary_failure":  "AI köməkçisi müvəqqəti olaraq əlçatan deyil. /status, /health, /doctor istifadə edin və ya sonra yenidən cəhd edin.",
+    "ask_usage":  "İstifadə: /ask \u003cDevOps sualı\u003e",
+    "ask_too_long":  "Sual çox uzundur. Maksimum uzunluq {maximum} simvoldur.",
+    "generic_error":  "Sorğu təhlükəsiz şəkildə tamamlana bilmədi. Yenidən cəhd edin.",
+    "language_usage":  "İstifadə: /language az və ya /language en",
+    "language_changed":  "Dil Azərbaycan dilinə dəyişdirildi.",
+    "status":  {
+                   "title":  "🌿 Agrivo Platforma Statusu",
+                   "environment":  "Mühit: {value}",
+                   "data_mode":  "Məlumat rejimi: {value}",
+                   "active_alerts":  "Aktiv xəbərdarlıqlar: {count}",
+                   "last_deployment":  "Son deployment: {value}",
+                   "overall":  "Ümumi status: {value}",
+                   "observed":  "Müşahidə vaxtı: {value}"
+               },
+    "health":  {
+                   "title":  "🩺 Agrivo Komponent Sağlamlığı",
+                   "status":  "Status",
+                   "latency":  "Gecikmə",
+                   "observed":  "Müşahidə"
+               },
+    "doctor":  {
+                   "title":  "🩺 Agrivo Klaster Doktoru",
+                   "score":  "Sağlamlıq balı: {score}/100",
+                   "coverage":  "Məlumat əhatəsi: {coverage}%",
+                   "deductions":  "Çıxılan ballar:",
+                   "recommendation":  "Tövsiyə:"
+               },
+    "components":  {
+                       "frontend":  "Frontend",
+                       "backend":  "Backend",
+                       "database":  "Verilənlər bazası",
+                       "kubernetes":  "Kubernetes",
+                       "prometheus":  "Prometheus",
+                       "grafana":  "Grafana",
+                       "alertmanager":  "Alertmanager",
+                       "argocd":  "Argo CD"
+                   },
+    "statuses":  {
+                     "healthy":  "Sağlam",
+                     "degraded":  "Zəifləmiş",
+                     "unhealthy":  "Qeyri-sağlam",
+                     "unknown":  "Naməlum",
+                     "operational":  "İşlək",
+                     "critical":  "Kritik",
+                     "success":  "Uğurlu",
+                     "successful":  "Uğurlu",
+                     "failed":  "Uğursuz",
+                     "failure":  "Uğursuz"
+                 }
+}

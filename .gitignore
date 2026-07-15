@@ -1,0 +1,109 @@
+# Secrets and local environment files
+.env
+.env.*
+*.env
+!.env.example
+*.secret
+secrets/
+
+# Credentials, certificates and cluster access
+*.pem
+*.key
+*.crt
+*.cer
+*.p12
+*.pfx
+*.jks
+kubeconfig
+kubeconfig-*
+.kube/
+.azure/
+.gnupg/
+
+# Python environments and bytecode
+.venv/
+venv/
+env/
+ENV/
+__pycache__/
+*.py[cod]
+*$py.class
+.python-version
+
+# Packaging
+build/
+dist/
+*.egg-info/
+.eggs/
+wheels/
+
+# Tests, type checking and coverage
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.hypothesis/
+.tox/
+.nox/
+.coverage
+.coverage.*
+coverage.xml
+htmlcov/
+test-tmp/
+
+# Runtime state
+/data/*.db
+/data/*.db-shm
+/data/*.db-wal
+data/*.db
+data/*.db-shm
+data/*.db-wal
+logs/
+*.log
+*.pid
+*.sock
+*.tmp
+*.bak
+
+# Generated reports and charts
+*.png
+*.svg
+reports/
+
+# IDE and editor state
+.vscode/
+.idea/
+*.code-workspace
+*.sublime-project
+*.sublime-workspace
+*.swp
+*.swo
+*~
+
+# Operating-system files
+.DS_Store
+.AppleDouble
+.LSOverride
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Local Docker overrides and volumes
+docker-compose.override.yml
+docker-compose.override.yaml
+.docker/
+
+# Terraform/OpenTofu state must never enter the bot repository
+.terraform/
+*.tfstate
+*.tfstate.*
+crash.log
+crash.*.log
+*.tfvars
+*.tfvars.json
+.terraformrc
+terraform.rc
+
+# Local Codex/agent workspace metadata
+.codex/
+.agents/

@@ -1,0 +1,17 @@
+{
+  "scenario": "database-unavailable", "source": "mock", "available": true, "status": "available", "safe_error": null,
+  "observed_at": "2026-07-14T12:30:00Z", "environment": "development",
+  "components": {
+    "frontend": {"source": "mock", "available": true, "observed_at": "2026-07-14T12:30:00Z", "status": "healthy", "safe_error": null, "latency_ms": 41},
+    "backend": {"source": "mock", "available": true, "observed_at": "2026-07-14T12:30:00Z", "status": "unhealthy", "safe_error": null, "latency_ms": 95},
+    "database": {"source": "mock", "available": false, "observed_at": "2026-07-14T12:30:00Z", "status": "unhealthy", "safe_error": "Database readiness check failed."},
+    "prometheus": {"source": "mock", "available": true, "observed_at": "2026-07-14T12:30:00Z", "status": "healthy", "safe_error": null},
+    "grafana": {"source": "mock", "available": true, "observed_at": "2026-07-14T12:30:00Z", "status": "healthy", "safe_error": null},
+    "alertmanager": {"source": "mock", "available": true, "observed_at": "2026-07-14T12:30:00Z", "status": "healthy", "safe_error": null},
+    "argocd": {"source": "mock", "available": true, "observed_at": "2026-07-14T12:30:00Z", "status": "healthy", "safe_error": null, "sync_status": "Synced"},
+    "kubernetes": {"source": "mock", "available": true, "observed_at": "2026-07-14T12:30:00Z", "status": "degraded", "safe_error": null, "running_pods": 6, "pending_pods": 0, "failed_pods": 0, "restarts_last_hour": 2}
+  },
+  "active_alerts": [{"name": "AgrivoDatabaseUnavailable", "severity": "critical", "status": "firing", "service": "database", "description": "Backend readiness cannot connect to PostgreSQL.", "started_at": "2026-07-14T12:24:00Z"}],
+  "metrics": {"backend_p95_latency_ms": null, "backend_error_rate_percent": 42, "backend_cpu_percent": 22, "backend_memory_percent": 44},
+  "deployment": {"available": true, "status": "success", "component": "backend", "commit_sha": "dbd0wn001234", "image_tag": "dbd0wn001234", "argocd_sync_status": "Synced", "observed_at": "2026-07-14T10:30:00Z", "safe_error": null}
+}

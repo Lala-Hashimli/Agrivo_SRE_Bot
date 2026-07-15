@@ -1,0 +1,17 @@
+{
+  "scenario": "failed-deployment", "source": "mock", "available": true, "status": "available", "safe_error": null,
+  "observed_at": "2026-07-14T12:20:00Z", "environment": "development",
+  "components": {
+    "frontend": {"source": "mock", "available": true, "observed_at": "2026-07-14T12:20:00Z", "status": "healthy", "safe_error": null, "latency_ms": 45},
+    "backend": {"source": "mock", "available": true, "observed_at": "2026-07-14T12:20:00Z", "status": "unhealthy", "safe_error": null},
+    "database": {"source": "mock", "available": true, "observed_at": "2026-07-14T12:20:00Z", "status": "healthy", "safe_error": null, "latency_ms": 21},
+    "prometheus": {"source": "mock", "available": true, "observed_at": "2026-07-14T12:20:00Z", "status": "healthy", "safe_error": null},
+    "grafana": {"source": "mock", "available": true, "observed_at": "2026-07-14T12:20:00Z", "status": "healthy", "safe_error": null},
+    "alertmanager": {"source": "mock", "available": true, "observed_at": "2026-07-14T12:20:00Z", "status": "healthy", "safe_error": null},
+    "argocd": {"source": "mock", "available": true, "observed_at": "2026-07-14T12:20:00Z", "status": "degraded", "safe_error": null, "sync_status": "Synced"},
+    "kubernetes": {"source": "mock", "available": true, "observed_at": "2026-07-14T12:20:00Z", "status": "degraded", "safe_error": null, "running_pods": 5, "pending_pods": 1, "failed_pods": 0, "restarts_last_hour": 4}
+  },
+  "active_alerts": [{"name": "AgrivoBackendRolloutFailed", "severity": "critical", "status": "firing", "service": "backend", "description": "The backend rollout did not reach its readiness target.", "started_at": "2026-07-14T12:14:00Z"}],
+  "metrics": {"backend_p95_latency_ms": null, "backend_error_rate_percent": 18.3, "backend_cpu_percent": 12, "backend_memory_percent": 32},
+  "deployment": {"available": true, "status": "failed", "component": "backend", "commit_sha": "fa11ed001234", "image_tag": "fa11ed001234", "argocd_sync_status": "Synced", "observed_at": "2026-07-14T12:12:00Z", "safe_error": null}
+}

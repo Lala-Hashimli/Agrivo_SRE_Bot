@@ -1,0 +1,22 @@
+{
+  "scenario": "healthy-system",
+  "source": "mock",
+  "available": true,
+  "status": "available",
+  "safe_error": null,
+  "observed_at": "2026-07-14T12:00:00Z",
+  "environment": "development",
+  "components": {
+    "frontend": {"source": "mock", "available": true, "observed_at": "2026-07-14T12:00:00Z", "status": "healthy", "safe_error": null, "latency_ms": 42},
+    "backend": {"source": "mock", "available": true, "observed_at": "2026-07-14T12:00:00Z", "status": "healthy", "safe_error": null, "latency_ms": 85},
+    "database": {"source": "mock", "available": true, "observed_at": "2026-07-14T12:00:00Z", "status": "healthy", "safe_error": null, "latency_ms": 18},
+    "prometheus": {"source": "mock", "available": true, "observed_at": "2026-07-14T12:00:00Z", "status": "healthy", "safe_error": null},
+    "grafana": {"source": "mock", "available": true, "observed_at": "2026-07-14T12:00:00Z", "status": "healthy", "safe_error": null},
+    "alertmanager": {"source": "mock", "available": true, "observed_at": "2026-07-14T12:00:00Z", "status": "healthy", "safe_error": null},
+    "argocd": {"source": "mock", "available": true, "observed_at": "2026-07-14T12:00:00Z", "status": "healthy", "safe_error": null, "sync_status": "Synced"},
+    "kubernetes": {"source": "mock", "available": true, "observed_at": "2026-07-14T12:00:00Z", "status": "healthy", "safe_error": null, "running_pods": 6, "pending_pods": 0, "failed_pods": 0, "restarts_last_hour": 0}
+  },
+  "active_alerts": [],
+  "metrics": {"backend_p95_latency_ms": 120, "backend_error_rate_percent": 0.2, "backend_cpu_percent": 31, "backend_memory_percent": 46},
+  "deployment": {"available": true, "status": "success", "component": "backend", "commit_sha": "abc123def456", "image_tag": "abc123def456", "argocd_sync_status": "Synced", "observed_at": "2026-07-14T11:30:00Z", "safe_error": null}
+}
