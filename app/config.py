@@ -31,7 +31,7 @@ class Settings(BaseSettings):
     telegram_incident_chat_id: int | None = None
 
     gemini_api_key: str | None = None
-    gemini_model: str = "gemini-2.0-flash"
+    gemini_model: str = "gemini-3.5-flash"
     ai_analysis_enabled: bool = True
     ai_max_question_length: int = Field(default=1000, ge=50, le=4000)
     database_path: Path = Path("data/agrivo-sre-bot.db")
